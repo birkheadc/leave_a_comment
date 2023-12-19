@@ -46,3 +46,9 @@ span.center {
 .heavy {
   font-weight: 700;
 }
+
+@media (max-width: 980px) {
+  :root {
+    font-size: 1.5rem;
+  }
+}

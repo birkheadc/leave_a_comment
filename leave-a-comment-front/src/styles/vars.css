@@ -1,0 +1,18 @@
+:root {
+  --clr-white: #E0E0E0;
+  --clr-black: #1B1B3A;
+
+  --clr-accent-light: #BCD6F0;
+  --clr-accent-dark: #296EB4;
+
+  --clr-error: red;
+  --clr-success: green;
+
+  --border-pri: 1px solid var(--clr-black);
+  --border-loading-spinner: solid 5px var(--clr-white);
+
+  --box-shadow-normal: 2px 2px 2px var(--clr-black);
+  --box-shadow-small: 1px 1px 1px var(--clr-black);
+
+  --bg-gradient: linear-gradient(127deg, var(--clr-accent-dark) 20%, var(--clr-accent-light) 80%);
+}

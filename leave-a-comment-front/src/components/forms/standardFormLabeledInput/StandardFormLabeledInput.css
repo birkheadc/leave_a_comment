@@ -1,0 +1,25 @@
+div.standard-form-labeled-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+div.standard-form-labeled-input-wrapper>label {
+  user-select: none;
+  position: absolute;
+  top: -0.7em;
+  left: 0.5em;
+  background-color: var(--clr-white);
+  padding: 0 5px;
+  text-transform: capitalize;
+}
+
+div.standard-form-labeled-input-wrapper>input, div.standard-form-labeled-input-wrapper>textarea {
+  border: var(--border-pri);
+  padding: 10px;
+}
+
+div.standard-form-labeled-input-wrapper>input:hover, div.standard-form-labeled-input-wrapper>input:focus,
+div.standard-form-labeled-input-wrapper>textarea:hover, div.standard-form-labeled-input-wrapper>textarea:focus {
+  color: var(--clr-accent-dark);
+  box-shadow: var(--box-shadow-normal);
+}

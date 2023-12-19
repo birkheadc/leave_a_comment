@@ -1,0 +1,34 @@
+div.comment-display-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  border: var(--border-pri);
+  padding: 10px;
+}
+
+div.comment-display-contents {
+  padding: 10px;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  flex: 1;
+}
+
+div.comment-display-controls {
+  
+}
+
+span.comment-display-title {
+  padding: 3px;
+  border-bottom: dotted 1px var(--clr-black);
+  width: fit-content;
+
+  font-weight: 300;
+}
+
+span.comment-display-body {
+  padding: 10px;
+}

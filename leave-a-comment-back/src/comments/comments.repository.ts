@@ -1,38 +1,69 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Comment } from "./entities/comment.entity";
+import { AttributeValue, DeleteItemCommand, DynamoDBClient, PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { CommentsConfig } from "./comments.config";
 
 @Injectable()
 export class CommentsRepository {
 
-  comment1: Comment = {
-    id: "9ee9d696-7c48-41fb-9f31-06463019e821",
-    site: "birkheadc.me",
-    name: "Colby",
-    body: "This is a comment from Colby. It is not long enough to test my formatting.",
-    date: Date.now()
-  };
-  comment2: Comment = {
-    id: "8a698235-29dd-4717-98d3-e8511f289142",
-    site: "birkheadc.me",
-    name: "Jacob",
-    body: "This is a mean comment from a mean person. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting. It is long enough to test my formatting.",
-    date: Date.now()
-  }
-
-  mockData: Comment[] = [
-    this.comment1,
-    this.comment2
-  ];
+  constructor(private readonly client: DynamoDBClient, private readonly config: CommentsConfig) { }
 
   async add(comment: Comment) {
-    this.mockData.push(comment);
+    const itemObject: Record<string, AttributeValue> = comment.toItemObject();
+
+    const command = new PutItemCommand({
+      TableName: this.config.tableName,
+      Item: itemObject
+    });
+
+    try {
+      await this.client.send(command);
+    } catch (error) {
+      console.log('Error while performing add: ', error);
+      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   async delete(id: string) {
-    this.mockData = this.mockData.filter(c => c.id !== id);
+    const command = new DeleteItemCommand({
+      TableName: this.config.tableName,
+      Key: {
+        id: {
+          S: id
+        }
+      },
+      ReturnConsumedCapacity: 'TOTAL',
+      ReturnValues: 'ALL_OLD'
+    });
+
+    try {
+      const result = await this.client.send(command);
+      if (result.Attributes == null) throw new HttpException("Not Found", HttpStatus.NOT_FOUND);
+    } catch (error) {
+      console.log('Error while performing delete: ', error);
+      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   async getAll() {
-    return this.mockData;
+    const comments: Comment[] = [];
+
+    const command = new ScanCommand({
+      TableName: this.config.tableName
+    });
+
+    try {
+      const response = await this.client.send(command);
+      if (response.Items) {
+        response.Items.forEach(item => {
+          comments.push(Comment.fromDynamoDBObject(item));
+        })
+      }
+    } catch (error) {
+      console.log('Error while performing getAll: ', error);
+      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    return comments;
   }
 }

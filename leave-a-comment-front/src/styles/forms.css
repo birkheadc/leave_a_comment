@@ -9,6 +9,7 @@ form.standard-form {
   gap: 20px;
 
   width: fit-content;
+  max-width: 100%;
   margin: auto;
 }
 

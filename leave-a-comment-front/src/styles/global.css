@@ -12,8 +12,8 @@ body {
 
 main {
   background-color: var(--clr-white);
-  min-width: 600px;
-  max-width: 980px;
+  min-width: min(600px, 90%);
+  max-width: min(980px, 90%);
   margin: 30px auto;
   padding: 20px;
 

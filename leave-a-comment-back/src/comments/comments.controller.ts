@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseGuards } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('comments')
 export class CommentsController {
@@ -12,12 +13,19 @@ export class CommentsController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   async findAll() {
     return await this.commentsService.findAll();
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   async remove(@Param('id') id: string) {
     await this.commentsService.remove(id);
+  }
+
+  @Get('ping')
+  ping() {
+    return "Ping successful.";
   }
 }

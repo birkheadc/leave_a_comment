@@ -13,11 +13,11 @@ export class CommentModel {
     if (!Array.isArray(json)) {
     const comment = new CommentModel();
 
-    comment.id = json.id || "";
-    comment.site = json.site || "";
-    comment.name = json.name || "";
-    comment.body = json.body || "";
-    comment.date = json.date || 0;
+    comment.id = json.id ?? "";
+    comment.site = json.site ?? "";
+    comment.name = json.name ?? "";
+    comment.body = json.body ?? "";
+    comment.date = json.date ?? 0;
 
     return [comment];
     }

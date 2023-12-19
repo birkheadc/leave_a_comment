@@ -5,6 +5,7 @@ div.comment-display-wrapper {
 
   border: var(--border-pri);
   padding: 10px;
+  min-width: fit-content;
 }
 
 div.comment-display-contents {

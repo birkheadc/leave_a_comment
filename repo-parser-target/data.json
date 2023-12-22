@@ -1,0 +1,54 @@
+{
+  "id": "21bb672e-43f1-4f3d-9375-07470ec66ad9",
+  "title": "Leave A Comment",
+  "source": "https://github.com/birkheadc/leave_a_comment",
+  "site": "comments.birkheadc.me",
+  "favoriteLevel": 400,
+  "descriptions": {
+    "shortDescriptions": [
+      {
+        "language": "en",
+        "content": "REST API that allows anonymous users to post comments for the admin to view and manage."
+      },
+      {
+        "language": "jp",
+        "content": "匿名なユーザーにコメントを投稿してもらい、アドミンにだけ見られるようなREST APIです。"
+      }
+    ],
+    "longDescriptions": [
+      {
+        "language": "en",
+        "content": "A REST API that allows one-way communication between anonymous users and the admin.\nThe front-end is mostly only for the admin to view and manage comments, but also hosts a form for anonymous users to post from the app itself.\nIntended purpose is for posting to from other websites the admin has created, to provide an avenue for simple feedback from viewers."
+      },
+      {
+        "language": "jp",
+        "content": "匿名なユーザーから一方的にコメントをもらうためのREST APIです。\nフロントエンドのほうは主にアドミンがコメントを読んだり消したりするためのものですが、一応匿名なユーザーに使っていただくフォームもついています。\nほかのサイトにフォームをつけてこのAPIに向かうことで、そのサイトの利用者から気軽にメッセージを送ってもらう目的で作られています。"
+      }
+    ],
+    "bulletPoints": [
+      {
+        "language": "en",
+        "content": [
+          "Supplies an endpoint for anonymous users to send short messages to the admin of a site.",
+          "Fully integrated with AWS serverless for "
+        ]
+      },
+      {
+        "language": "jp",
+        "content": [
+          "…",
+          "…"
+        ]
+      }
+    ]
+  },
+  "technologies": [
+    "HTML",
+    "CSS",
+    "TypeScript",
+    "React",
+    "NestJS",
+    "AWS",
+    "Serverless"
+  ]
+}

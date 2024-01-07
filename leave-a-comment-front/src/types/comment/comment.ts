@@ -3,7 +3,7 @@ export class CommentModel {
   site: string = "";
   name: string = "";
   body: string = "";
-  date: number = 0;
+  date: Date = new Date();
 
   toTitle(): string {
     return `${this.name}#${this.site}@${new Date(this.date).toLocaleString()}`
@@ -17,7 +17,7 @@ export class CommentModel {
     comment.site = json.site ?? "";
     comment.name = json.name ?? "";
     comment.body = json.body ?? "";
-    comment.date = json.date ?? 0;
+    comment.date = new Date(parseInt(json.date) ?? 0);
 
     return [comment];
     }
@@ -31,7 +31,7 @@ export class CommentModel {
       comment.site = object.site || "";
       comment.name = object.name || "";
       comment.body = object.body || "";
-      comment.date = object.date || 0;
+      comment.date = new Date(parseInt(object.date) ?? 0);
 
       comments.push(comment);
     });

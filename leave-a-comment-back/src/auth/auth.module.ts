@@ -8,8 +8,6 @@ import helpers from '../shared/helpers';
 import { AuthConfig } from './auth.config';
 import { ConfigService } from '@nestjs/config';
 
-// Todo: Get the secret from aws
-// The current secret is just random and is not real so leave me alone
 @Module({
   controllers: [AuthController],
   providers: [AuthService, AuthRepository, AuthConfig, {

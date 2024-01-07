@@ -20,10 +20,12 @@ export default function CommentDisplay(props: ICommentDisplayProps): JSX.Element
     if (confirm) props.delete(comment);
   }
 
+  console.log(comment);
+
   return (
     <div className='comment-display-wrapper'>
       <div className="comment-display-contents">
-        <span className='comment-display-title'>From <span className="heavy">{comment.name}</span> # <span className="heavy">{comment.site}</span> @ {new Date(comment.date).toLocaleString()}</span>
+        <span className='comment-display-title'>From <span className="heavy">{comment.name}</span> # <span className="heavy">{comment.site}</span> @ {comment.date.toLocaleString()}</span>
         <span className='comment-display-body'>{comment.body}</span>
       </div>
       <div className='comment-display-controls'>

@@ -9,6 +9,7 @@ export class CommentsController {
 
   @Post()
   async create(@Body() createCommentDto: CreateCommentDto) {
+    console.log(`Received a create request: ${JSON.stringify(createCommentDto)}`);
     await this.commentsService.create(createCommentDto);
   }
 

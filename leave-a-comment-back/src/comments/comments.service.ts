@@ -9,6 +9,10 @@ export class CommentsService {
 
   }
   async create(createCommentDto: CreateCommentDto) {
+    if (createCommentDto.name.length < 1 && createCommentDto.body.length < 1) {
+      console.log(`Request had empty name and body, so discarding.`);
+      return;
+    }
     await this.repository.add(Comment.fromCreateCommentDto(createCommentDto));
   }
 
